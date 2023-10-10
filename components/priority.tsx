@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
 interface PriorityProps {
-  onValueChange: () => void;
+  onValueChange: (value: string) => void;
   defaultValue: string;
 }
 
@@ -40,6 +40,7 @@ export default function Priority({
 
   useEffect(() => {
     fetchPriorityList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

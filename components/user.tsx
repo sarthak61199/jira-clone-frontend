@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
 interface UserProps {
-  onValueChange: () => void;
+  onValueChange: (value: string) => void;
   defaultValue: string;
 }
 
@@ -37,6 +37,7 @@ export default function User({ onValueChange, defaultValue }: UserProps) {
 
   useEffect(() => {
     fetchUserList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,23 +1,48 @@
 import { create } from "zustand";
 
+interface IssueList {
+  id: number;
+  title: string;
+  description: string;
+  progressId: number;
+  priorityId: number;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  priority: {
+    id: number;
+    label: string;
+  };
+  progress: {
+    id: number;
+    label: string;
+  };
+  user: {
+    id: number;
+    name: string;
+  };
+}
+
 export type ModalType =
   | "login"
   | "register"
   | "createIssue"
   | "editIssue"
-  | "confirmDeleteUser";
+  | "confirmDeleteUser"
+  | "filterSidebar";
 
 interface ModalStore {
   type: ModalType | null;
   isOpen: boolean;
-  onOpen: (type: ModalType) => void;
+  data?: IssueList | null;
+  onOpen: (type: ModalType, data?: IssueList) => void;
   onClose: () => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
   type: null,
-  data: {},
+  data: null,
   isOpen: false,
-  onOpen: (type) => set({ isOpen: true, type }),
+  onOpen: (type, data) => set({ isOpen: true, type, data }),
   onClose: () => set({ type: null, isOpen: false }),
 }));

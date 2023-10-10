@@ -12,7 +12,7 @@ declare module "next-auth" {
       email: string;
       accessToken: string;
       refreshToken: string;
-      role: string;
+      role: "USER" | "ADMIN";
       isActive: boolean;
     };
   }
